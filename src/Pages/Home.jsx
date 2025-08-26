@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Hero from '../Componet/Hero';
-import Commit from '../Componet/Commit';
-import Service from '../Componet/Service';
-import Client from '../Componet/Client';
-import ContactPart from '../Componet/ContactPart';
+import Hero from '../Components/Hero';
+import Commit from '../Components/Commit';
+import Service from '../Components/Service';
+import Client from '../Components/Client';
+import ContactPart from '../Components/ContactPart';
 
 const Home = () => {
   // Common animation variants

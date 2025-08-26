@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Navbar from './Componet/Navbar';
-import Footer from './Componet/Footer';
-import Home from './Pages/Home';
-import About from "./Pages/About";
-import Contact from "./Pages/Contact";
-import Blog from './Pages/Blog';
-import BlogDetail from './Componet/BlogDetail';
-import Project from './Pages/Project';
+import Navbar from './Components/Navbar'
+import Footer from './Components/Footer'
+import Home from './Pages/Home'
+import About from "./Pages/About"
+import Contact from "./Pages/Contact"
+import Blog from './Pages/Blog'
+import BlogDetail from "./Components/Blogdetail"
+import Project from './Pages/Project'
 
 function App() {
   const [count, setCount] = useState(0);
