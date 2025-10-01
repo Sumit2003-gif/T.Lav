@@ -1,203 +1,185 @@
-import React from 'react';
+// pages/BlogPage.js
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import BlogHero from  '../Components/BlogHero';
+import BlogPostCard from '../Components/BlogCard';
+import BlogSidebar from '../Components/BlogSideBar';
 
+const BlogPage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
 
-const Blog = () => {
-  const blogs = [
-  {
-    id: 1,
-    title: 'How to Build a Modern Web App',
-    description: 'Learn the best practices for building scalable and responsive web applications.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 10, 2025',
-    link: '/blogs/1',
-  },
-  {
-    id: 2,
-    title: 'Top 10 React Tips',
-    description: 'Improve your React skills with these practical tips and tricks.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 12, 2025',
-    link: '/blogs/2',
-  },
-  {
-    id: 3,
-    title: 'UI/UX Design Trends in 2025',
-    description: 'Stay ahead with the latest design trends for websites and mobile apps.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 13, 2025',
-    link: '/blogs/3',
-  },
-  {
-    id: 4,
-    title: 'Optimizing Web Performance',
-    description: 'Tips to make your websites faster and more efficient for users.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 14, 2025',
-    link: '/blogs/4',
-  },
-  {
-    id: 5,
-    title: 'Introduction to Node.js',
-    description: 'Learn the fundamentals of Node.js and backend development.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 15, 2025',
-    link: '/blogs/5',
-  },
-  {
-    id: 6,
-    title: 'CSS Grid vs Flexbox',
-    description: 'Understand when to use CSS Grid and Flexbox in your layouts.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 16, 2025',
-    link: '/blogs/6',
-  },
-  {
-    id: 7,
-    title: 'Mastering JavaScript ES6',
-    description: 'Learn new JavaScript features and modern syntax for better code.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 17, 2025',
-    link: '/blogs/7',
-  },
-  {
-    id: 8,
-    title: 'Building REST APIs with Express',
-    description: 'Step-by-step guide to creating RESTful APIs using Express.js.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 18, 2025',
-    link: '/blogs/8',
-  },
-  {
-    id: 9,
-    title: 'State Management in React',
-    description: 'Learn Redux, Context API, and other state management techniques.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 19, 2025',
-    link: '/blogs/9',
-  },
-  {
-    id: 10,
-    title: 'Responsive Web Design',
-    description: 'How to make your website look perfect on any device.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 20, 2025',
-    link: '/blogs/10',
-  },
-  {
-    id: 11,
-    title: 'Next.js for Modern Apps',
-    description: 'Learn server-side rendering and static generation with Next.js.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 21, 2025',
-    link: '/blogs/11',
-  },
-  {
-    id: 12,
-    title: 'GraphQL Basics',
-    description: 'Get started with GraphQL for efficient API queries.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 22, 2025',
-    link: '/blogs/12',
-  },
-  {
-    id: 13,
-    title: 'SEO Best Practices',
-    description: 'Improve your website’s search engine ranking effectively.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 23, 2025',
-    link: '/blogs/13',
-  },
-  {
-    id: 14,
-    title: 'Accessibility in Web Design',
-    description: 'Making your web applications accessible for all users.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 24, 2025',
-    link: '/blogs/14',
-  },
-  {
-    id: 15,
-    title: 'TypeScript for React',
-    description: 'How to use TypeScript to make your React apps safer and scalable.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 25, 2025',
-    link: '/blogs/15',
-  },
-  {
-    id: 16,
-    title: 'Deploying Apps on Vercel',
-    description: 'Step-by-step guide to deploy your frontend and fullstack apps.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 26, 2025',
-    link: '/blogs/16',
-  },
-  {
-    id: 17,
-    title: 'Understanding REST vs GraphQL',
-    description: 'Compare REST APIs with GraphQL for modern web development.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 27, 2025',
-    link: '/blogs/17',
-  },
-  {
-    id: 18,
-    title: 'Web Security Basics',
-    description: 'Learn how to secure your web applications from common vulnerabilities.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 28, 2025',
-    link: '/blogs/18',
-  },
-  {
-    id: 19,
-    title: 'Progressive Web Apps',
-    description: 'Build fast, offline-capable apps using modern web technologies.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 29, 2025',
-    link: '/blogs/19',
-  },
-  {
-    id: 20,
-    title: 'CSS Animations and Transitions',
-    description: 'Add smooth animations to enhance user experience.',
-    image: "https://images.pexels.com/photos/33217722/pexels-photo-33217722.jpeg",
-    date: 'Aug 30, 2025',
-    link: '/blogs/20',
-  },
-];
+  // Sample blog posts data
+  const blogPosts = [
+    {
+      id: 1,
+      title: "Understanding Property Valuation Methods",
+      excerpt: "Learn about the different approaches to property valuation and when each method is most appropriate for accurate assessments.",
+      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "June 10, 2023",
+      author: "Sarah Johnson",
+      category: "Valuation Tips",
+      comments: 5,
+      slug: "understanding-property-valuation-methods"
+    },
+    {
+      id: 2,
+      title: "How Market Trends Affect Property Values",
+      excerpt: "Explore the key market indicators that influence property values and how to interpret them for better investment decisions.",
+      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "May 28, 2023",
+      author: "Michael Chen",
+      category: "Market Trends",
+      comments: 8,
+      slug: "market-trends-property-values"
+    },
+    {
+      id: 3,
+      title: "Commercial Property Valuation: Key Considerations",
+      excerpt: "Discover the unique factors that impact commercial property valuations and how to approach complex assessments.",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92e1b59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "May 15, 2023",
+      author: "Emily Rodriguez",
+      category: "Commercial Real Estate",
+      comments: 3,
+      slug: "commercial-property-valuation-considerations"
+    },
+    {
+      id: 4,
+      title: "5 Factors That Increase Your Property Value",
+      excerpt: "Learn about the most impactful improvements and features that can significantly boost your property's market value.",
+      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "April 28, 2023",
+      author: "David Wilson",
+      category: "Valuation Tips",
+      comments: 12,
+      slug: "factors-increase-property-value"
+    },
+    {
+      id: 5,
+      title: "The Impact of Interest Rates on Real Estate",
+      excerpt: "Understand how changing interest rates affect property values and what it means for buyers, sellers, and investors.",
+      image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "April 12, 2023",
+      author: "Sarah Johnson",
+      category: "Market Trends",
+      comments: 7,
+      slug: "impact-interest-rates-real-estate"
+    },
+    {
+      id: 6,
+      title: "Residential vs. Commercial Valuation: Key Differences",
+      excerpt: "Compare the approaches and methodologies used in residential and commercial property valuations.",
+      image: "https://images.unsplash.com/photo-1560185007-5f0bb1866cab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "March 30, 2023",
+      author: "Michael Chen",
+      category: "Valuation Tips",
+      comments: 4,
+      slug: "residential-vs-commercial-valuation"
+    },
+    {
+      id: 7,
+      title: "Technology in Property Valuation: Modern Tools",
+      excerpt: "Discover how technology is transforming property valuation with advanced tools and data analytics.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "March 18, 2023",
+      author: "Emily Rodriguez",
+      category: "Valuation Tips",
+      comments: 6,
+      slug: "technology-property-valuation"
+    },
+    {
+      id: 8,
+      title: "Economic Indicators Every Property Investor Should Watch",
+      excerpt: "Learn about the key economic indicators that signal changes in the real estate market and property values.",
+      image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "March 5, 2023",
+      author: "David Wilson",
+      category: "Investment Advice",
+      comments: 9,
+      slug: "economic-indicators-property-investors"
+    }
+  ];
 
+  // Calculate pagination
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-<div className="bg-gray-50 mt-[17%] md:mt-[10%] px-4">
-      {/* Sticky Section Heading */}
-      <div className="sticky top-0 bg-gray-50 z-20 py-6 mb-12">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Our Blog</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Stay updated with our latest articles, tips, and trends in technology and design.
-          </p>
-        </div>
-        <div className="border-b border-gray-300 mt-6"></div> {/* Optional divider */}
-      </div>
-
-      {/* Blog Cards */}
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {blogs.map((blog) => (
-          <a
-            key={blog.id}
-            href={blog.link} // Internal or external link
-            className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition hover:-translate-y-2 hover:shadow-2xl duration-300 block"
-          >
-            <img src={blog.image} alt={blog.title} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">{blog.title}</h2>
-              <p className="text-gray-600 mb-4">{blog.description}</p>
-              <span className="text-gray-400 text-sm">{blog.date}</span>
+    <div className="bg-gray-50">
+      {/* Hero Section */}
+      <BlogHero />
+      
+      {/* Blog Content */}
+      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {currentPosts.map((post, index) => (
+                <BlogPostCard key={post.id} post={post} index={index} />
+              ))}
             </div>
-          </a>
-        ))}
-      </div>
+            
+            {/* Pagination */}
+            <motion.div 
+              className="mt-12 flex justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="flex space-x-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
+                  <button
+                    key={number}
+                    onClick={() => paginate(number)}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                      currentPage === number 
+                        ? 'bg-yellow-600 text-white' 
+                        : 'bg-white text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    {number}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <BlogSidebar />
+          </div>
+        </div>
+      </section>
+      
+      {/* Newsletter CTA */}
+      <section className="py-16 px-4 md:px-8 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
+            Stay Updated with Property Valuation Insights
+          </h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Subscribe to our newsletter for expert analysis, market trends, and valuation tips.
+          </p>
+          <div className="max-w-md mx-auto flex">
+            <input 
+              type="email" 
+              placeholder="Your email address" 
+              className="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800"
+            />
+            <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-r-lg transition-colors">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default Blog;
+export default BlogPage;

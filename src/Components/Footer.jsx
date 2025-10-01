@@ -1,80 +1,138 @@
-import React from 'react';
-import { FaBuilding, FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaGooglePlusG,
+} from "react-icons/fa";
+
+// Company News Links
+const companyNewsLinks = [
+  { name: "Partners", path: "/" },
+  { name: "Career", path: "/" },
+  { name: "Reviews", path: "/" },
+  { name: "Terms & Conditions", path: "/" },
+  { name: "Help", path: "/" },
+];
+
+// Useful Links
+const usefulLinks = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
+  { name: "Services", path: "/service" },
+  { name: "Project", path: "/project" },
+  { name: "Our Team", path: "/about" },
+  { name: "Latest Blog", path: "/blog" },
+];
+
+// Social Media Links
+const socialLinks = [
+  { icon: <FaFacebookF size={18} />, url: "https://facebook.com" },
+  { icon: <FaTwitter size={18} />, url: "https://twitter.com" },
+  { icon: <FaInstagram size={18} />, url: "https://instagram.com" },
+  { icon: <FaGooglePlusG size={18} />, url: "https://plus.google.com" },
+];
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 py-[3%]">
-      {/* Logo Section */}
-      <div className="flex items-center gap-3 px-8 py-6 border-b border-t border-gray-300">
-        <FaBuilding size={50} className="text-gray-500" />
+    <footer className="bg-[#182323] text-gray-300 py-12 px-6 sm:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* About Section */}
+        <div className="space-y-6">
+          <div className="flex items-center">
+            <img
+              src="https://htmldemo.zcubethemes.com/relxtower/img/logo/logo.png"
+              alt="Relixtower Logo"
+              className="h-8 mr-3"
+            />
+          </div>
+          <p className="text-sm leading-relaxed">
+            Pellentesque habitant morbi tristique senectus et netus et fames ac
+            turpis egestas. Vestibulum tortor quam, feugiat vitae, tempor sit amet,
+            ante. Donec eu libero sit amet quam egestas semper.
+          </p>
+
+          {/* Social Icons */}
+          <div className="flex items-center space-x-4 mt-6">
+            <span className="text-sm font-semibold">Follow Us</span>
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Company News Section */}
         <div>
-          <p className="font-bold text-gray-800 text-2xl">T. Lav & Nguyen</p>
-          <p className="text-lg text-gray-500 ">Construction</p>
+          <h3 className="text-lg font-semibold text-white mb-6 border-b-2 border-yellow-500 pb-2 inline-block">
+            Company News
+          </h3>
+          <ul className="space-y-3 text-sm">
+            {companyNewsLinks.map((link, index) => (
+              <li key={index}>
+                <Link
+                  to={link.path}
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Useful Links Section */}
+        <div>
+          <h3 className="text-lg font-semibold text-white mb-6 border-b-2 border-yellow-500 pb-2 inline-block">
+            Useful Links
+          </h3>
+          <ul className="space-y-3 text-sm">
+            {usefulLinks.map((link, index) => (
+              <li key={index}>
+                <Link
+                  to={link.path}
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      {/* Footer Content */}
-      <div className="py-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-300">
+      {/* Copyright */}
+      <div className="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} @ Relixtower. All design by ZCube.
+      </div>
 
-          {/* Column 1: Form */}
-          <div className="px-8">
-            <h1 className="text-2xl font-semibold mb-6">Stay Connected With Us</h1>
-            <form className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Email <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full border border-gray-300 rounded-full px-4 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
-                />
-              </div>
-              <label className="flex items-center gap-2 text-sm text-gray-600">
-                <input type="checkbox" className="w-4 h-4 border-gray-400" />
-                Yes, subscribe me to your newsletter. <span className="text-red-500">*</span>
-              </label>
-              <button
-                type="submit"
-                className="w-full bg-gray-700 cursor-pointer text-white py-2 rounded-full hover:bg-gray-900 transition"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-
-          {/* Column 2: Contact Info */}
-          <div className="px-8 flex flex-col justify-center space-y-4 text-sm">
-            <div>
-              <p className="font-medium text-gray-800">123-456-7890</p>
-              <p className="text-gray-600">info@mysite.com</p>
-            </div>
-            <p className="text-gray-600">
-              500 Terry Francine St. San Francisco, CA 94158
-            </p>
-            <div className="flex gap-4 text-xl text-gray-500">
-              <FaInstagram className="cursor-pointer hover:text-pink-500 transition" />
-              <FaYoutube className="cursor-pointer hover:text-red-500 transition" />
-              <FaFacebook className="cursor-pointer hover:text-blue-600 transition" />
-            </div>
-          </div>
-
-          {/* Column 3: Policies */}
-          <div className="px-8 flex flex-col justify-center text-sm space-y-2">
-            <button className="text-left hover:underline hover:text-gray-900 transition">
-              Privacy Policy
-            </button>
-            <button className="text-left hover:underline hover:text-gray-900 transition">
-              Accessibility Statement
-            </button>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="flex justify-center md:justify-end text-xs text-gray-500 mt-8 px-8">
-          <p>© 2035 by T. Lav & Nguyen Construction. Powered and secured by Wix</p>
-        </div>
+      {/* Scroll to Top Button */}
+      <div
+        className="fixed bottom-6 right-6 bg-yellow-600 hover:bg-yellow-700 text-white p-3 rounded-full shadow-lg cursor-pointer transition-colors duration-300"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
       </div>
     </footer>
   );

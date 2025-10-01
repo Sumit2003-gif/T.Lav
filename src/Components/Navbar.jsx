@@ -1,89 +1,103 @@
 import React, { useState, useEffect } from "react";
-import { FaBuilding, FaBars } from "react-icons/fa";
+import { FaBars, FaLock } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const [signupOpen, setSignupOpen] = useState(false);
   const location = useLocation();
 
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Contact Us", path: "/contact" },
-    { name: "Blogs", path: "/blogs" },
+    { name: "Blog", path: "/blogs" },
+    { name: "Contact", path: "/contact" },
   ];
 
-  // Close menu on ESC key press
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") setMenuOpen(false);
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setSignupOpen(false);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
-    <div>
-      {/* Fixed Navbar */}
-      <div className="flex items-center justify-between fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-md">
-        {/* Logo */}
-        <Link to="/">
-          <div
-            className="flex items-center gap-3 px-8 py-3 cursor-pointer border-gray-300"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            <FaBuilding size={50} className="text-gray-500" />
-            <div>
-              <p className="font-bold text-gray-800 text-2xl">T. Lav & Nguyen</p>
-              <p className="text-lg text-gray-500">Construction</p>
-            </div>
-          </div>
-        </Link>
+    <>
+      {/* Navbar Wrapper */}
+      <div className="flex justify-between items-center bg-[#d2934e] h-16 text-black z-50">
+        {/* Left - Logo */}
+        <div className="bg-[#3b3732] w-1/4 h-16 flex justify-center items-center px-6 py-4">
+          <Link to="/" className="flex items-center gap-2">
+            <img src="https://htmldemo.zcubethemes.com/relxtower/img/logo/logo.png" alt="Logo" className="h-8" />
+          </Link>
+        </div>
 
-        {/* Menu Button */}
+        {/* Center - Menu Items */}
+        <div className="hidden md:flex gap-8 items-center">
+          {menuItems.map((item, index) => (
+            <Link
+              key={index}
+              to={item.path}
+              className={`hover:underline hover:underline-offset-4 transition-all ${
+                location.pathname === item.path ? "font-semibold" : ""
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+
+        {/* Right - Signup Button */}
+        <div
+  className="bg-[#3b3732] h-full flex items-center px-6 cursor-pointer"
+  onClick={() => navigate("/signup")}
+>
+  <FaLock className="text-white mr-2" />
+  <span className="text-white font-semibold">SIGNUP</span>
+</div>
+
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(true)}
-          className="p-2 rounded-md bg-gray-800 cursor-pointer text-white hover:bg-gray-700 mr-4 md:mr-8"
+          className="p-2 text-white bg-gray-800 rounded-md md:hidden mr-4"
         >
-          <FaBars size={24} />
+          <FaBars size={20} />
         </button>
       </div>
 
-      {/* Blur Background (only when menu open) */}
+      {/* Mobile Sidebar */}
       {menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 backdrop-blur-sm bg-black/30 z-40"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
         />
       )}
-
-      {/* Slide Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-1/2 bg-black text-white transition-transform duration-300 z-50 ${
+        className={`fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-[#3b3732] text-white transition-transform duration-300 z-50 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close Button */}
-        <div className="flex justify-end p-6">
+        <div className="flex justify-end p-4">
           <IoMdClose
-            size={30}
+            size={28}
             onClick={() => setMenuOpen(false)}
-            className="cursor-pointer"
+            className="cursor-pointer hover:text-orange-400"
           />
         </div>
-
-        {/* Menu Items */}
-        <div className="flex flex-col items-center gap-8 text-2xl font-light">
+        <div className="flex flex-col gap-6 px-6 text-lg">
           {menuItems.map((item, index) => (
             <Link
               key={index}
               to={item.path}
               onClick={() => setMenuOpen(false)}
-              className={`hover:underline ${
-                location.pathname === item.path
-                  ? "text-yellow-400 font-semibold"
-                  : ""
+              className={`hover:text-orange-400 ${
+                location.pathname === item.path ? "text-orange-400 font-semibold" : ""
               }`}
             >
               {item.name}
@@ -91,7 +105,50 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-    </div>
+
+      {/* Signup Modal */}
+      {signupOpen && (
+        <>
+          <div
+            onClick={() => setSignupOpen(false)}
+            className="fixed inset-0 bg-black/50 z-40"
+          />
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-lg w-[90%] max-w-md p-6 z-50">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold text-gray-700">Sign Up</h2>
+              <IoMdClose
+                size={24}
+                onClick={() => setSignupOpen(false)}
+                className="cursor-pointer text-gray-500 hover:text-red-400"
+              />
+            </div>
+            <form className="flex flex-col gap-4">
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="border border-gray-300 rounded px-4 py-2"
+              />
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="border border-gray-300 rounded px-4 py-2"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="border border-gray-300 rounded px-4 py-2"
+              />
+              <button
+                type="submit"
+                className="bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition"
+              >
+                Create Account
+              </button>
+            </form>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
