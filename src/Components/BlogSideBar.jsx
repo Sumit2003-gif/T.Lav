@@ -150,9 +150,9 @@ const BlogSidebar = () => {
           <input 
             type="email" 
             placeholder="Your email address" 
-            className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white text-gray-800"
+            className="w-full px-4 py-2 border-2 border-white placeholder:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white text-gray-800"
           />
-          <button className="w-full bg-white text-yellow-600 font-medium py-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <button className="w-full cursor-pointer   bg-white text-yellow-600 font-medium py-2 rounded-lg hover:bg-gray-100 transition-colors">
             Subscribe
           </button>
         </div>

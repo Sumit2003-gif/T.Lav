@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Use a placeholder image for the building.
 const BUILDING_IMAGE_URL = "https://htmldemo.zcubethemes.com/relxtower/img/features/about_img02.png";
@@ -49,10 +50,11 @@ const HomeAbout = () => {
           <p className="text-stone-700 text-base leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantiue.
           </p>
-          
-          <button className="mt-6 px-8 py-3 bg-[#D29751] text-white hover:text-[#D29751] hover:bg-white font-semibold rounded-lg shadow-md border-[#D29751] border-2 transition-colors duration-300">
+          <Link to='/about'>
+          <button className="mt-6 px-8 py-3 cursor-pointer bg-[#D29751] text-white hover:text-[#D29751] hover:bg-white font-semibold rounded-lg shadow-md border-[#D29751] border-2 transition-colors duration-300">
             Get Started
           </button>
+          </Link>
         </div>
       </div>
     </div>

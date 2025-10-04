@@ -7,8 +7,7 @@ const testimonials = [
   {
     text: `Ralo helped my wife and I refinance our house and purchase an investment property. 
       Anyone could have done that but what I really liked about her is that she was extremely ethical. 
-      She carefully listened to our concerns and gave us excellent advice. She was also very patient. 
-      I would absolutely recommend her and do business with her again especially if you are a first-time investor.`,
+     `,
     name: 'John Dew',
     date: '03 days ago',
     image: 'https://htmldemo.zcubethemes.com/relxtower/img/testimonial/testi_avatar.png',
@@ -211,7 +210,7 @@ const TestimonialSection = () => {
           <div className="absolute left-[-20px] sm:left-[-40px] top-1/2 transform -translate-y-1/2">
             <button
               onClick={handlePrev}
-              className="bg-gray-100 p-3 rounded-full shadow hover:bg-[#D29751] hover:text-white transition"
+              className="bg-gray-100 p-3 cursor-pointer rounded-full shadow hover:bg-[#D29751] hover:text-white transition"
               aria-label="Previous testimonial"
             >
               <FiArrowLeft />
@@ -220,7 +219,7 @@ const TestimonialSection = () => {
           <div className="absolute right-[-20px] sm:right-[-40px] top-1/2 transform -translate-y-1/2">
             <button
               onClick={handleNext}
-              className="bg-gray-100 p-3 rounded-full shadow hover:bg-[#D29751] hover:text-white transition"
+              className="bg-gray-100 p-3 cursor-pointer rounded-full shadow hover:bg-[#D29751] hover:text-white transition"
               aria-label="Next testimonial"
             >
               <FiArrowRight />

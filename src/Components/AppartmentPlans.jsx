@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const apartmentPlans = {
   penthouse: {
@@ -80,7 +81,7 @@ const AppartmentPlans = () => {
             <button
               key={key}
               onClick={() => setActivePlan(key)}
-              className={`px-6 py-3 rounded-full font-medium uppercase tracking-wide transition-all duration-300 text-sm md:text-base
+              className={`px-6 py-3 rounded-full cursor-pointer font-medium uppercase tracking-wide transition-all duration-300 text-sm md:text-base
                 ${
                   activePlan === key
                     ? "bg-yellow-700 text-white shadow-lg scale-105"
@@ -119,9 +120,11 @@ const AppartmentPlans = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="mt-6 w-full md:w-auto px-8 py-3 bg-yellow-700 text-white font-semibold rounded-full shadow-lg hover:bg-yellow-800 transition duration-300">
+            <Link to='/contact'>
+            <button className="mt-6 cursor-pointer w-full md:w-auto px-8 py-3 bg-yellow-700 text-white font-semibold rounded-full shadow-lg hover:bg-yellow-800 transition duration-300">
               Book Now
             </button>
+            </Link>
           </div>
 
           {/* Right Side - Image */}

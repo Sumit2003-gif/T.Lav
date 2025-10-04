@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaBed, FaRulerCombined, FaBath, FaCar } from 'react-icons/fa'; // FontAwesome icons
+import { Link } from 'react-router-dom';
 
 const PropertyFeature = () => {
   const [data] = useState({
@@ -65,9 +66,11 @@ const PropertyFeature = () => {
 
           {/* Button */}
           <div>
-            <button className="mt-4 px-8 py-3 bg-[#D29751] text-white font-semibold rounded-xl shadow-lg hover:text-[#D29751] hover:bg-white border-2 border-[#D29751] transition duration-300 hover:scale-105 focus:outline-none">
+            <Link to='/contact'>
+            <button className="mt-4 px-8 py-3 cursor-pointer bg-[#D29751] text-white font-semibold rounded-xl shadow-lg hover:text-[#D29751] hover:bg-white border-2 border-[#D29751] transition duration-300 hover:scale-105 focus:outline-none">
               Contact Us
             </button>
+            </Link>
           </div>
         </div>
          <div className="md:w-1/2 p-6 flex items-center justify-center bg-neutral-50">

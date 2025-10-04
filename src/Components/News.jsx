@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const newsItems = [
   {
     image:
-      "https://images.unsplash.com/photo-1582268611998-ab629f44849c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg",
     date: "5 DEC 2019",
     author: "ADMIN",
     category: "REAL ESTATE",
@@ -11,7 +12,7 @@ const newsItems = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1628172828695-177343e26f5f?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg",
     date: "5 DEC 2019",
     author: "ADMIN",
     category: "REAL ESTATE",
@@ -19,7 +20,7 @@ const newsItems = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1600596542816-3e0e72ca8b47?q=80&w=2856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg",
     date: "5 DEC 2019",
     author: "ADMIN",
     category: "REAL ESTATE",
@@ -73,9 +74,11 @@ const News = () => {
                 </h3>
 
                 {/* Read More */}
-                <button className="mt-4 text-yellow-700 font-medium flex items-center gap-2 hover:gap-3 transition-all duration-300">
+                <Link to='/blogs'>
+                <button className="mt-4 cursor-pointer text-yellow-700 font-medium flex items-center gap-2 hover:gap-3 transition-all duration-300">
                   Read More <span>→</span>
                 </button>
+                </Link>
               </div>
             </div>
           ))}

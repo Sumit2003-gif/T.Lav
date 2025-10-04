@@ -37,7 +37,7 @@ const BlogPage = () => {
       id: 3,
       title: "Commercial Property Valuation: Key Considerations",
       excerpt: "Discover the unique factors that impact commercial property valuations and how to approach complex assessments.",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92e1b59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg",
       date: "May 15, 2023",
       author: "Emily Rodriguez",
       category: "Commercial Real Estate",
@@ -98,7 +98,40 @@ const BlogPage = () => {
       category: "Investment Advice",
       comments: 9,
       slug: "economic-indicators-property-investors"
-    }
+    },
+    {
+      id: 9,
+      title: "5 Factors That Increase Your Property Value",
+      excerpt: "Learn about the most impactful improvements and features that can significantly boost your property's market value.",
+      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "April 28, 2023",
+      author: "David Wilson",
+      category: "Valuation Tips",
+      comments: 12,
+      slug: "factors-increase-property-value"
+    },
+    {
+      id: 10,
+      title: "The Impact of Interest Rates on Real Estate",
+      excerpt: "Understand how changing interest rates affect property values and what it means for buyers, sellers, and investors.",
+      image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "April 12, 2023",
+      author: "Sarah Johnson",
+      category: "Market Trends",
+      comments: 7,
+      slug: "impact-interest-rates-real-estate"
+    },
+    {
+      id: 11,
+      title: "Residential vs. Commercial Valuation: Key Differences",
+      excerpt: "Compare the approaches and methodologies used in residential and commercial property valuations.",
+      image: "https://images.unsplash.com/photo-1560185007-5f0bb1866cab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      date: "March 30, 2023",
+      author: "Michael Chen",
+      category: "Valuation Tips",
+      comments: 4,
+      slug: "residential-vs-commercial-valuation"
+    },
   ];
 
   // Calculate pagination
@@ -110,7 +143,7 @@ const BlogPage = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 overflow-hidden">
       {/* Hero Section */}
       <BlogHero />
       
@@ -137,7 +170,7 @@ const BlogPage = () => {
                   <button
                     key={number}
                     onClick={() => paginate(number)}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                    className={`w-10 h-10 rounded- cursor-pointer flex items-center justify-center transition-colors ${
                       currentPage === number 
                         ? 'bg-yellow-600 text-white' 
                         : 'bg-white text-gray-700 hover:bg-gray-100'
@@ -170,9 +203,9 @@ const BlogPage = () => {
             <input 
               type="email" 
               placeholder="Your email address" 
-              className="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800"
+              className="flex-grow px-4 py-3 border-2 border-white placeholder:text-white rounded-l-lg focus:outline-none text-gray-800"
             />
-            <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-r-lg transition-colors">
+            <button className="bg-gray-800 cursor-pointer hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-r-lg transition-colors">
               Subscribe
             </button>
           </div>

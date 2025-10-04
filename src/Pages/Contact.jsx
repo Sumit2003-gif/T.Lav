@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Building, Home, Landmark } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -122,7 +123,7 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 overflow-hidden">
       {/* Hero Section */}
       <motion.div 
         className="relative h-96 md:h-[400px] w-full overflow-hidden"
@@ -177,15 +178,17 @@ const ContactPage = () => {
             className="text-lg font-light space-x-2"
             variants={breadcrumbVariants}
           >
+            <Link to='/'>
             <motion.span 
-              className="opacity-75 hover:opacity-100 transition-opacity cursor-pointer"
+              className="opacity-75 hover:opacity-100 font-bold transition-opacity cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
               Home
             </motion.span>
+            </Link>
             <span className="opacity-75">&gt;</span>
             <motion.span 
-              className="font-semibold"
+              className=""
               whileHover={{ scale: 1.05 }}
             >
               Contact
@@ -284,10 +287,10 @@ const ContactPage = () => {
                     name="propertyType"
                     value={formData.propertyType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition"
+                    className="w-full px-4 py-3 border cursor-pointer border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent transition"
                   >
                     {propertyTypes.map((type, index) => (
-                      <option key={index} value={type.value}>{type.label}</option>
+                      <option className='cursor-pointer' key={index} value={type.value}>{type.label}</option>
                     ))}
                   </select>
                 </motion.div>
@@ -307,7 +310,7 @@ const ContactPage = () => {
                 
                 <motion.button
                   type="submit"
-                  className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center"
+                  className="w-full bg-yellow-600 cursor-pointer hover:bg-yellow-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center"
                   variants={itemVariants}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
@@ -436,7 +439,8 @@ const ContactPage = () => {
             Contact us today for a comprehensive property appraisal that meets your specific needs.
           </motion.p>
           <motion.button
-            className="bg-white text-yellow-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105"
+          onClick={()=>window.scrollTo({top:0,behavior:'smooth'})}
+            className="bg-white text-yellow-600 cursor-pointer hover:bg-gray-100 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105"
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

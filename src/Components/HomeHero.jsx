@@ -6,6 +6,7 @@ import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Link } from "react-router-dom";
 
 const slideData = [
   {
@@ -149,20 +150,13 @@ const HomeHero = () => {
                   variants={fadeUp}
                   className="flex flex-col sm:w-1/2 sm:flex-row sm:items-center gap-3 mb-6"
                 >
-                  <button className="bg-[#D29751] sm:w-1/2 px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-[#D29751] transition duration-300 whitespace-nowrap text-sm sm:text-base">
+                  <Link to='/contact'>
+                  <button className="bg-[#D29751] cursor-pointer sm:w-fit px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-[#D29751] transition duration-300 whitespace-nowrap text-sm sm:text-base">
                     Get a Quote
                   </button>
+                  </Link>
 
-                  <button className="bg-white rounded-full p-2 hover:bg-[#D29751] transition duration-300 group w-10 h-10 flex items-center justify-center mx-auto sm:mx-0">
-                    <svg
-                      className="w-5 h-5 text-[#D29751] group-hover:text-white transition duration-300"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </button>
+                  
                 </motion.div>
 
                 {/* Price */}

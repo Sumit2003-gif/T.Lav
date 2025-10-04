@@ -147,7 +147,7 @@ const Avability = () => {
                 <td className="px-6 py-4 text-center">
                   <button
                     onClick={() => openModal(prop.images)}
-                    className="px-5 py-2 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold rounded-full shadow-md transition-all duration-300 hover:scale-110"
+                    className="px-5 py-2 bg-yellow-600 cursor-pointer hover:bg-yellow-700 text-white font-semibold rounded-full shadow-md transition-all duration-300 hover:scale-110"
                   >
                     View Now
                   </button>
@@ -171,7 +171,7 @@ const Avability = () => {
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-gray-800 hover:text-red-500 transition-transform hover:rotate-90 z-10 text-2xl"
+              className="absolute top-4 right-4 text-gray-800 cursor-pointer hover:text-red-500 transition-transform hover:rotate-90 z-10 text-2xl"
               aria-label="Close modal"
             >
               ✕
@@ -182,7 +182,7 @@ const Avability = () => {
               {/* Previous Button */}
               <button
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/60 p-3 rounded-full hover:bg-black/80 transition transform hover:scale-110"
+                className="absolute left-4 top-1/2 cursor-pointer -translate-y-1/2 text-white bg-black/60 p-3 rounded-full hover:bg-black/80 transition transform hover:scale-110"
                 aria-label="Previous image"
               >
                 ❮
@@ -197,7 +197,7 @@ const Avability = () => {
               {/* Next Button */}
               <button
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/60 p-3 rounded-full hover:bg-black/80 transition transform hover:scale-110"
+                className="absolute right-4 top-1/2 cursor-pointer -translate-y-1/2 text-white bg-black/60 p-3 rounded-full hover:bg-black/80 transition transform hover:scale-110"
                 aria-label="Next image"
               >
                 ❯

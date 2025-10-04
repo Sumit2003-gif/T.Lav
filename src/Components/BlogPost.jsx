@@ -1,7 +1,7 @@
 // pages/BlogPost.js
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, MessageCircle, Share2, Facebook, Twitter, Linkedin, ArrowLeft } from 'lucide-react';
 
 const BlogPost = () => {
@@ -54,13 +54,22 @@ const BlogPost = () => {
   ];
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <div className="relative h-64 md:h-80 w-full bg-gradient-to-r from-gray-800 to-gray-900">
+      <div className="relative h-64 md:h-80 w-full">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center" 
+          style={{ backgroundImage: `url(${blogPost.image})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+        </div>
+        
+        {/* Content */}
         <div className="absolute inset-0 flex items-center justify-center px-4">
           <div className="text-center text-white max-w-3xl">
             <motion.h1 
-              className="text-3xl md:text-5xl font-serif font-bold mb-4"
+              className="text-3xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -68,7 +77,7 @@ const BlogPost = () => {
               {blogPost.title}
             </motion.h1>
             <motion.div 
-              className="flex flex-wrap justify-center items-center text-gray-300 gap-4"
+              className="flex flex-wrap justify-center items-center text-gray-200 gap-4 md:gap-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -103,14 +112,14 @@ const BlogPost = () => {
             <img 
               src={blogPost.image} 
               alt={blogPost.title} 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
           
           {/* Article Content */}
-          <div className="p-8">
+          <div className="p-6 md:p-8">
             <div className="mb-6">
-              <span className="inline-block bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full">
+              <span className="inline-block bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full font-medium">
                 {blogPost.category}
               </span>
             </div>
@@ -124,13 +133,13 @@ const BlogPost = () => {
             <div className="mt-12 pt-8 border-t border-gray-200">
               <h3 className="text-lg font-bold text-gray-800 mb-4">Share this article</h3>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition-colors shadow-md">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-blue-400 flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-blue-400 flex items-center justify-center text-white hover:bg-blue-500 transition-colors shadow-md">
                   <Twitter className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center text-white hover:bg-blue-800 transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center text-white hover:bg-blue-800 transition-colors shadow-md">
                   <Linkedin className="w-5 h-5" />
                 </a>
               </div>
@@ -145,8 +154,8 @@ const BlogPost = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.7 }}
         >
-          <div className="flex items-start">
-            <div className="w-16 h-16 rounded-full bg-gray-300 mr-4 flex-shrink-0 overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-start">
+            <div className="w-16 h-16 rounded-full bg-gray-300 mr-4 flex-shrink-0 overflow-hidden mb-4 sm:mb-0">
               <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
                 alt={blogPost.author} 
@@ -172,7 +181,7 @@ const BlogPost = () => {
             {relatedPosts.map((post, index) => (
               <motion.div 
                 key={index}
-                className="bg-white rounded-xl shadow-md overflow-hidden"
+                className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl"
                 whileHover={{ y: -10 }}
               >
                 <div className="h-48 overflow-hidden">
@@ -183,13 +192,13 @@ const BlogPost = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2 hover:text-yellow-600 transition-colors">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 hover:text-yellow-600 transition-colors cursor-pointer">
                     {post.title}
                   </h3>
-                  <a href="#" className="text-yellow-600 font-medium hover:text-yellow-700 flex items-center">
+                  <Link to="/blogs" className="text-yellow-600 font-medium hover:text-yellow-700 flex items-center">
                     Read More
                     <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -203,13 +212,13 @@ const BlogPost = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <a 
-            href="/blogs" 
-            className="inline-flex items-center text-yellow-600 font-medium hover:text-yellow-700"
+          <Link 
+            to="/blogs" 
+            className="inline-flex items-center text-yellow-600 font-medium hover:text-yellow-700 px-4 py-2 rounded-lg hover:bg-yellow-50 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
-          </a>
+          </Link>
         </motion.div>
       </section>
     </div>

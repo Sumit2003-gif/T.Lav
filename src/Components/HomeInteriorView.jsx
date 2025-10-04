@@ -35,8 +35,9 @@ const Card = ({ url, header, text, hoverText }) => {
         </div>
 
         {/* Button bottom right */}
-        <div className="mt-auto flex justify-end pt-6">
-          <button className="border-2 border-[#D29751] text-[#D29751] uppercase text-xs font-semibold py-3 px-6 rounded-lg bg-white bg-opacity-20 backdrop-blur-sm hover:bg-[#D29751] hover:text-white transition-all duration-300 shadow-md">
+        <div className="mt-auto flex  justify-end pt-6">
+          <button
+          onClick={()=>window.scrollTo({top:0,behavior:'smooth'})} className="border-2 border-[#D29751] cursor-pointer text-[#D29751] uppercase text-xs font-semibold py-3 px-6 rounded-lg bg-white bg-opacity-20 backdrop-blur-sm hover:bg-[#D29751] hover:text-white transition-all duration-300 shadow-md">
             Explore Now
           </button>
         </div>
@@ -50,37 +51,37 @@ const HomeInteriorSlider = () => {
 
   const cardsData = [
     {
-      url: 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg',
+      url: 'https://images.pexels.com/photos/1080696/pexels-photo-1080696.jpeg',
       header: 'Cozy Studio in Downtown',
       text: 'Featured',
       hoverText: 'Modern studio with city views and cozy vibes.',
     },
     {
-      url: 'https://images.pexels.com/photos/4393911/pexels-photo-4393911.jpeg',
+      url: 'https://images.pexels.com/photos/1129413/pexels-photo-1129413.jpeg',
       header: 'Luxury Penthouse',
       text: 'Featured',
       hoverText: 'Spacious penthouse with rooftop terrace and skyline views.',
     },
     {
-      url: 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg',
+      url: 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg',
       header: 'Elegant Family Home',
       text: 'Featured',
       hoverText: 'Perfect home with garden and nearby parks for family fun.',
     },
     {
-      url: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg',
+      url: 'https://images.pexels.com/photos/1374125/pexels-photo-1374125.jpeg',
       header: 'Modern Minimalist Apartment',
       text: 'Featured',
       hoverText: 'Sleek and stylish space designed for simplicity and comfort.',
     },
     {
-      url: 'https://images.pexels.com/photos/395137/pexels-photo-395137.jpeg',
+      url: 'https://images.pexels.com/photos/3356416/pexels-photo-3356416.jpeg',
       header: 'Charming Country Cottage',
       text: 'Featured',
       hoverText: 'Rustic charm with beautiful countryside views and cozy interiors.',
     },
     {
-      url: 'https://images.pexels.com/photos/221453/pexels-photo-221453.jpeg',
+      url: 'https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg',
       header: 'Downtown Loft',
       text: 'Featured',
       hoverText: 'Industrial-style loft with open floor plan and great lighting.',

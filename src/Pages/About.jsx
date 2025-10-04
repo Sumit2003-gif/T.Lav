@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import AboutHero from '../Components/AboutHero';
+import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const AboutPage = () => {
   // Animation variants
@@ -86,29 +87,11 @@ const AboutPage = () => {
     }
   ];
 
-  const faqs = [
-    {
-      question: "How long does a property valuation take?",
-      answer: "Residential valuations typically take 3-5 business days, while commercial properties may require 7-10 business days depending on complexity."
-    },
-    {
-      question: "What factors affect property valuation?",
-      answer: "Location, property size, condition, recent sales of comparable properties, market trends, and unique features all influence the valuation."
-    },
-    {
-      question: "Are your valuations accepted by banks?",
-      answer: "Yes, our certified appraisers follow industry standards, and our reports are accepted by all major financial institutions."
-    },
-    {
-      question: "How much does a valuation cost?",
-      answer: "Costs vary based on property type, size, and complexity. Contact us for a customized quote based on your specific needs."
-    }
-  ];
-
+  
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 overflow-hidden">
       {/* Hero Section */}
-      <AboutHero />
+      <AboutHero text='About'/>
       
       {/* About Content Section */}
       <motion.section 
@@ -331,7 +314,8 @@ const AboutPage = () => {
             </div>
             
             <motion.button
-              className="w-full bg-yellow-600/70 hover:bg-yellow-700/80 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center"
+            onClick={()=>window.scrollTo({top:0,behavior:'smooth'})}
+              className="w-full bg-yellow-600/70 cursor-pointer hover:bg-yellow-700/80 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -358,13 +342,15 @@ const AboutPage = () => {
             We also offer specialized services including estate planning, divorce settlements, insurance valuations, and expert witness testimony.
           </p>
         </div>
+        <a href='tel:0123456789'>
         <motion.button
-          className="bg-white text-yellow-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full transition duration-300 whitespace-nowrap"
+          className="bg-white text-yellow-600 cursor-pointer hover:bg-gray-100 font-bold py-3 px-8 rounded-full transition duration-300 whitespace-nowrap"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          View All Services
+          Call Now
         </motion.button>
+        </a>
       </div>
     </motion.div>
   </div>
@@ -444,7 +430,8 @@ const AboutPage = () => {
             Contact us today for a comprehensive property appraisal that meets your specific needs.
           </motion.p>
           <motion.button
-            className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105"
+          onClick={()=>window.scrollTo({top:0,behavior:'smooth'})}
+            className="bg-yellow-600 cursor-pointer hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105"
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -510,7 +497,7 @@ const AboutPage = () => {
               <p className="text-yellow-600 font-medium mb-2">{member.position}</p>
               <p className="text-gray-600">{member.bio}</p>
               <div className="mt-4 flex justify-center space-x-3">
-                {["linkedin", "twitter", "facebook"].map((social, idx) => (
+                {[<FaLinkedin/> ,<FaTwitter/>, <FaFacebook/>].map((social, idx) => (
                   <motion.a 
                     key={idx}
                     href="#"
@@ -518,7 +505,7 @@ const AboutPage = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
-                    {social === "linkedin" ? "in" : social[0]}
+                    {social }
                   </motion.a>
                 ))}
               </div>

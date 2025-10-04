@@ -8,6 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [signupOpen, setSignupOpen] = useState(false);
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -23,52 +24,79 @@ const Navbar = () => {
         setSignupOpen(false);
       }
     };
+
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <>
       {/* Navbar Wrapper */}
-      <div className="flex justify-between items-center bg-[#d2934e] h-16 text-black z-50">
-        {/* Left - Logo */}
-        <div className="bg-[#3b3732] w-1/4 h-16 flex justify-center items-center px-6 py-4">
-          <Link to="/" className="flex items-center gap-2">
-            <img src="https://htmldemo.zcubethemes.com/relxtower/img/logo/logo.png" alt="Logo" className="h-8" />
-          </Link>
-        </div>
-
-        {/* Center - Menu Items */}
-        <div className="hidden md:flex gap-8 items-center">
-          {menuItems.map((item, index) => (
-            <Link
-              key={index}
-              to={item.path}
-              className={`hover:underline hover:underline-offset-4 transition-all ${
-                location.pathname === item.path ? "font-semibold" : ""
-              }`}
-            >
-              {item.name}
+      <div 
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? "shadow-lg py-1" 
+            : "py-0"
+        }`}
+      >
+        <div className="flex justify-between items-center bg-[#d2934e] h-16 text-black">
+          {/* Left - Logo */}
+          <div className="bg-[#3b3732] w-1/4 h-16 flex justify-center items-center px-6 py-4">
+            <Link to="/" className="flex items-center gap-2">
+              <img 
+                src="https://htmldemo.zcubethemes.com/relxtower/img/logo/logo.png" 
+                alt="Logo" 
+                className="h-8 transition-all duration-300" 
+              />
             </Link>
-          ))}
+          </div>
+
+          {/* Center - Menu Items */}
+          <div className="hidden md:flex gap-8 items-center">
+            {menuItems.map((item, index) => (
+              <Link
+                key={index}
+                to={item.path}
+                className={`hover:underline hover:underline-offset-4 transition-all ${
+                  location.pathname === item.path 
+                    ? "font-semibold text-[#3b3732]" 
+                    : "text-black"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Right - Signup Button */}
+          <div
+            className="bg-[#3b3732] h-full flex items-center px-6 cursor-pointer transition-all hover:bg-[#2a2723]"
+            onClick={() => navigate("/signup")}
+          >
+            <FaLock className="text-white mr-2" />
+            <span className="text-white font-semibold">SIGNUP</span>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="p-2 text-white bg-[#3b3732] rounded-md md:hidden mr-4 hover:bg-[#2a2723] transition-colors"
+          >
+            <FaBars size={20} />
+          </button>
         </div>
-
-        {/* Right - Signup Button */}
-        <div
-  className="bg-[#3b3732] h-full flex items-center px-6 cursor-pointer"
-  onClick={() => navigate("/signup")}
->
-  <FaLock className="text-white mr-2" />
-  <span className="text-white font-semibold">SIGNUP</span>
-</div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMenuOpen(true)}
-          className="p-2 text-white bg-gray-800 rounded-md md:hidden mr-4"
-        >
-          <FaBars size={20} />
-        </button>
       </div>
 
       {/* Mobile Sidebar */}
@@ -96,7 +124,7 @@ const Navbar = () => {
               key={index}
               to={item.path}
               onClick={() => setMenuOpen(false)}
-              className={`hover:text-orange-400 ${
+              className={`hover:text-orange-400 transition-colors ${
                 location.pathname === item.path ? "text-orange-400 font-semibold" : ""
               }`}
             >
@@ -126,17 +154,17 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Full Name"
-                className="border border-gray-300 rounded px-4 py-2"
+                className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
               />
               <input
                 type="email"
                 placeholder="Email Address"
-                className="border border-gray-300 rounded px-4 py-2"
+                className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
               />
               <input
                 type="password"
                 placeholder="Password"
-                className="border border-gray-300 rounded px-4 py-2"
+                className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
               />
               <button
                 type="submit"

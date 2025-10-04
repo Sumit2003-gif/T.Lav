@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const AboutHero = () => {
+const AboutHero = ({text}) => {
   // Replace this with the actual path or URL to your image
   const imageUrl = 'https://htmldemo.zcubethemes.com/relxtower/img/testimonial/test-bg.jpg'; 
 
@@ -97,17 +97,17 @@ const AboutHero = () => {
           variants={breadcrumbVariants}
         >
           <motion.span 
-            className="opacity-75 hover:opacity-100 transition-opacity cursor-pointer"
+            className="opacity-75 font-semibold hover:opacity-100 transition-opacity cursor-pointer"
             whileHover={{ scale: 1.05 }}
           >
             Home
           </motion.span>
           <span className="opacity-75">&gt;</span>
           <motion.span 
-            className="font-semibold"
+            className=""
             whileHover={{ scale: 1.05 }}
           >
-            News
+            {text}
           </motion.span>
         </motion.div>
       </motion.div>

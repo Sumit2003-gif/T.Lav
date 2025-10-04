@@ -58,59 +58,41 @@ function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <Home />
-            </motion.div>
           } />
 
           <Route path="/about" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <About />
-            </motion.div>
           } />
 
           <Route path="/contact" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <Contact />
-            </motion.div>
           } />
 
           {/* Blog Routes */}
           <Route path="/blogs" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <BlogPage />
-            </motion.div>
           } />
 
           <Route path="/blogs/:slug" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <BlogPost />
-            </motion.div>
           } />
 
           <Route path="/blogs/:category" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <BlogCategory />
-            </motion.div>
           } />
 
           <Route path="/project" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <Project />
-            </motion.div>
           } />
 
           {/* Auth Routes */}
           <Route path="/signup" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <Signup />
-            </motion.div>
           } />
 
           <Route path="/login" element={
-            <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
               <Login />
-            </motion.div>
           } />
         </Routes>
       </AnimatePresence>

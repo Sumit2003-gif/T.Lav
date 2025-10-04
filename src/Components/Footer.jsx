@@ -6,24 +6,26 @@ import {
   FaInstagram,
   FaGooglePlusG,
 } from "react-icons/fa";
+import { path } from "framer-motion/client";
 
 // Company News Links
+const scrollToTop = () => {
+  window.scrollTo({top:0,behavior:'smooth'})
+}
 const companyNewsLinks = [
-  { name: "Partners", path: "/" },
-  { name: "Career", path: "/" },
-  { name: "Reviews", path: "/" },
-  { name: "Terms & Conditions", path: "/" },
-  { name: "Help", path: "/" },
+  { name: "Partners", path: "/",scrollToTop },
+  { name: "Career", path: "/" ,scrollToTop},
+  { name: "Reviews", path: "/" ,scrollToTop},
+  { name: "Terms & Conditions", path: "/" ,scrollToTop},
+  { name: "Help", path: "/",scrollToTop },
 ];
 
 // Useful Links
 const usefulLinks = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about" },
-  { name: "Services", path: "/service" },
-  { name: "Project", path: "/project" },
-  { name: "Our Team", path: "/about" },
   { name: "Latest Blog", path: "/blog" },
+  {name:'Contact' ,path:'/contact'}
 ];
 
 // Social Media Links
@@ -69,27 +71,6 @@ const Footer = () => {
             ))}
           </div>
         </div>
-
-        {/* Company News Section */}
-        <div>
-          <h3 className="text-lg font-semibold text-white mb-6 border-b-2 border-yellow-500 pb-2 inline-block">
-            Company News
-          </h3>
-          <ul className="space-y-3 text-sm">
-            {companyNewsLinks.map((link, index) => (
-              <li key={index}>
-                <Link
-                  to={link.path}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Useful Links Section */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-6 border-b-2 border-yellow-500 pb-2 inline-block">
             Useful Links
@@ -107,6 +88,28 @@ const Footer = () => {
             ))}
           </ul>
         </div>
+        {/* Company News Section */}
+        <div>
+          <h3 className="text-lg font-semibold text-white mb-6 border-b-2 border-yellow-500 pb-2 inline-block">
+            Company News
+          </h3>
+          <ul className="space-y-3 text-sm">
+            {companyNewsLinks.map((link, index) => (
+              <li key={index}>
+                <Link
+                onClick={scrollToTop}
+                  to={link.path}
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Useful Links Section */}
+        
       </div>
 
       {/* Copyright */}
