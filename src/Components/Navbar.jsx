@@ -26,7 +26,7 @@ const Navbar = () => {
     };
 
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 0) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -45,9 +45,9 @@ const Navbar = () => {
     <>
       {/* Navbar Wrapper */}
       <div 
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 bg-white z-50 transition-all duration-300 ${
           isScrolled 
-            ? "shadow-lg py-1" 
+            ? "shadow-lg " 
             : "py-0"
         }`}
       >

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom"
+import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaTimes } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-     const navigate = useNavigate(); 
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -58,12 +58,24 @@ const Signup = () => {
 
     alert("Account created successfully!");
     navigate("/login");
+  };
 
+  const handleClose = () => {
+    navigate("/");
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-100 to-orange-200 px-4">
-      <div className="bg-white p-10 rounded-lg shadow-2xl w-full max-w-lg">
+      <div className="bg-white p-10 rounded-lg shadow-2xl w-full max-w-lg relative">
+        {/* Close Button */}
+        <button 
+          onClick={handleClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+          aria-label="Close signup form"
+        >
+          <FaTimes className="text-xl" />
+        </button>
+        
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">
           Create an Account
         </h2>
