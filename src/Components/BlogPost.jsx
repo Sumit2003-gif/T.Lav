@@ -3,57 +3,36 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, MessageCircle, Share2, Facebook, Twitter, Linkedin, ArrowLeft } from 'lucide-react';
+import { blogPosts } from '../Components/BlogData'; // Updated import path to match BlogPage.js
+import Footer from './Footer';
 
 const BlogPost = () => {
   const { slug } = useParams();
   
-  // Sample blog post data - in a real app, this would come from an API
-  const blogPost = {
-    title: "Understanding Property Valuation Methods",
-    excerpt: "Learn about the different approaches to property valuation and when each method is most appropriate for accurate assessments.",
-    content: `
-      <p>Property valuation is a critical process in real estate that determines the economic value of a property. Whether you're buying, selling, refinancing, or investing, understanding how properties are valued can help you make informed decisions.</p>
-      
-      <h3>The Sales Comparison Approach</h3>
-      <p>The sales comparison approach is one of the most common methods used in residential property valuation. This method compares the subject property to recently sold properties that are similar in location, size, condition, and features.</p>
-      <p>Appraisers make adjustments for differences between the subject property and the comparables to arrive at an estimated market value. This approach works best in active markets with plenty of recent sales data.</p>
-      
-      <h3>The Cost Approach</h3>
-      <p>The cost approach calculates what it would cost to replace the property with a similar one, minus depreciation. This method is particularly useful for new properties and special-purpose buildings that don't have many comparable sales.</p>
-      <p>The formula is: Land Value + (Replacement Cost New - Depreciation) = Property Value. While straightforward, this approach may not always reflect current market conditions, especially for older properties.</p>
-      
-      <h3>The Income Approach</h3>
-      <p>The income approach is primarily used for investment properties and commercial real estate. This method values a property based on the income it generates or could potentially generate.</p>
-      <p>Appraisers calculate the net operating income (NOI) and apply a capitalization rate to determine the property's value. This approach is ideal for rental properties, office buildings, and other income-producing real estate.</p>
-      
-      <h3>Choosing the Right Method</h3>
-      <p>The appropriate valuation method depends on the property type, available data, and purpose of the valuation. Residential properties typically use the sales comparison approach, while commercial properties often rely on the income approach.</p>
-      <p>For the most accurate valuation, professional appraisers often use multiple approaches and reconcile the results to arrive at a final value estimate.</p>
-    `,
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    date: "June 10, 2023",
-    author: "Sarah Johnson",
-    category: "Valuation Tips",
-    comments: 5,
-    authorBio: "Sarah is a certified residential appraiser with over 10 years of experience in property valuation. She specializes in residential properties and has conducted thousands of appraisals throughout her career."
-  };
+  // Find the blog post by slug from the blogPosts array
+  const blogPost = blogPosts.find(post => post.slug === slug);
+  
+  // If no post found, show a 404 message
+  if (!blogPost) {
+    return <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">Post Not Found</h1>
+        <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
+        <Link to="/blogs" className="inline-flex items-center text-yellow-600 font-medium hover:text-yellow-700 px-4 py-2 rounded-lg hover:bg-yellow-50 transition-colors">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Blog
+        </Link>
+      </div>
+    </div>;
+  }
 
-  const relatedPosts = [
-    {
-      title: "How Market Trends Affect Property Values",
-      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-    },
-    {
-      title: "5 Factors That Increase Your Property Value",
-      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-    },
-    {
-      title: "The Impact of Interest Rates on Real Estate",
-      image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-    }
-  ];
+  // Get related posts (excluding the current post)
+  const relatedPosts = blogPosts
+    .filter(post => post.id !== blogPost.id)
+    .slice(0, 3); // Get first 3 related posts
 
   return (
+    <>
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
       <div className="relative h-64 md:h-80 w-full">
@@ -126,7 +105,7 @@ const BlogPost = () => {
             
             <div 
               className="prose prose-lg max-w-none text-gray-700"
-              dangerouslySetInnerHTML={{ __html: blogPost.content }}
+              dangerouslySetInnerHTML={{ __html: blogPost.content || blogPost.excerpt }}
             />
             
             {/* Share Section */}
@@ -164,7 +143,7 @@ const BlogPost = () => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-gray-800">{blogPost.author}</h3>
-              <p className="text-gray-600 mt-2">{blogPost.authorBio}</p>
+              <p className="text-gray-600 mt-2">{blogPost.authorBio || `${blogPost.author} is a real estate expert with extensive knowledge in property valuation and market trends.`}</p>
             </div>
           </div>
         </motion.div>
@@ -195,7 +174,7 @@ const BlogPost = () => {
                   <h3 className="text-lg font-bold text-gray-800 mb-2 hover:text-yellow-600 transition-colors cursor-pointer">
                     {post.title}
                   </h3>
-                  <Link to="/blogs" className="text-yellow-600 font-medium hover:text-yellow-700 flex items-center">
+                  <Link to={`/blog/${post.slug}`} className="text-yellow-600 font-medium hover:text-yellow-700 flex items-center">
                     Read More
                     <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                   </Link>
@@ -222,6 +201,8 @@ const BlogPost = () => {
         </motion.div>
       </section>
     </div>
+    <Footer/>
+    </>
   );
 };
 
